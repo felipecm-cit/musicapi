@@ -1,9 +1,6 @@
 package com.fcm.musicapi.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Music {
@@ -14,7 +11,8 @@ public class Music {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ARTIST_ID")
     private Artist artist;
 
     public Artist getArtist() {

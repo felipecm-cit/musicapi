@@ -2,8 +2,9 @@ package com.fcm.musicapi.domain;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Artist {
@@ -14,6 +15,19 @@ public class Artist {
     private String name;
 
     private Integer year;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "artist")
+    private Set<Music> musics = new HashSet<>();
+
+    public Set<Music> getMusics() {
+        return musics;
+    }
+
+    public void setMusics(Set<Music> musics) {
+        this.musics = musics;
+    }
 
     public Long getId() {
         return id;
