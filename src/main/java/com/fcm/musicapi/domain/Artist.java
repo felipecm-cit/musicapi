@@ -1,5 +1,7 @@
 package com.fcm.musicapi.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
@@ -19,6 +21,7 @@ public class Artist {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "artist")
+    @JsonManagedReference
     private Set<Music> musics = new HashSet<>();
 
     public Set<Music> getMusics() {
