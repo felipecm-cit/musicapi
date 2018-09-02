@@ -6,4 +6,6 @@ public interface ArtistService {
 
     Iterable<Artist> getAllArtists();
 
+    Iterable<Artist> getArtistByYear(Integer year);
+
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -20,8 +21,12 @@ public class ArtistController {
 
     @GetMapping("/")
     @ResponseBody
-    public ResponseEntity<?> listAllArtists() {
-        return new ResponseEntity<>(artistService.getAllArtists(), HttpStatus.OK);
+    public ResponseEntity<?> listAllArtists(@RequestParam(value = "year", required = false) Integer year) {
+        if (year != null) {
+            return new ResponseEntity<>(artistService.getArtistByYear(year), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(artistService.getAllArtists(), HttpStatus.OK);
+        }
     }
 
 }

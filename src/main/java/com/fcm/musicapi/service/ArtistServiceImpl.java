@@ -16,4 +16,9 @@ public class ArtistServiceImpl implements ArtistService {
     public Iterable<Artist> getAllArtists() {
         return artistRepository.findAll();
     }
+
+    @Override
+    public Iterable<Artist> getArtistByYear(Integer year) {
+        return artistRepository.findByYear(year);
+    }
 }
